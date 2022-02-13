@@ -29,12 +29,20 @@ function registerObserver() {
         for(let mutation of mutationList) {
             if(mutation.addedNodes.length > 0) {
                 for(let node of mutation.addedNodes) {
-                    if(node?.tagName?.toLowerCase() == "svg") {
-                        populateSvg(node);
-                    }
-                }
+                    findClildCall(node, "svg", populateSvg);                }
             }
         };
+        function findClildCall(node, tagName, callback) {
+            if(node?.tagName?.toLowerCase() == tagName.toLowerCase()) {
+                callback(node);
+            }
+            if(node?.hasChildNodes()) {
+                for(child of node.childNodes) {
+                    findClildCall(child,tagName, callback);
+                }
+            }
+        }
+
     }
     const observerOptions = {
         childList: true,
