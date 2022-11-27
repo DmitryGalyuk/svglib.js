@@ -1,13 +1,13 @@
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", svglibjs_init);
 
-function init() {
+function svglibjs_init() {
     const svgs = document.getElementsByTagName("svg");
-    for(let svg of svgs) populateSvg(svg);
+    for(let svg of svgs) svglibjs_populateSvg(svg);
     
-    registerObserver();
+    svglibjs_registerObserver();
 }
 
-function populateSvg(target) {
+function svglibjs_populateSvg(target) {
     if (target.hasChildNodes()) return;
     const src = target.attributes["src"];
     if (src?.value == undefined) return;
@@ -24,7 +24,7 @@ function populateSvg(target) {
         })
 }
 
-function registerObserver() {
+function svglibjs_registerObserver() {
     function onChange(mutationList, observer) {
         for(let mutation of mutationList) {
             if(mutation.addedNodes.length > 0) {
