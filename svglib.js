@@ -29,7 +29,7 @@ function svglibjs_registerObserver() {
         for(let mutation of mutationList) {
             if(mutation.addedNodes.length > 0) {
                 for(let node of mutation.addedNodes) {
-                    findClildCall(node, "svg", populateSvg);                }
+                    findClildCall(node, "svg", svglibjs_populateSvg);                }
             }
         };
         function findClildCall(node, tagName, callback) {
